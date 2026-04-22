@@ -10,6 +10,17 @@ provider:
     TRANSMITTER_KEY_ID: ${env:SEED_PHRASE, self:custom.envs.TRANSMITTER_KEY_ID, ''}
     SEED_PHRASE: ${env:SEED_PHRASE, self:custom.envs.SEED_PHRASE, ''}
 
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "kms:Sign"
+            - "kms:GetPublicKey"
+          Resource: "*"
+package:
+  individually: true
+
 functions:
   sign:
     handler: src/handler.sign
