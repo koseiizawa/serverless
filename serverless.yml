@@ -6,6 +6,10 @@ provider:
   runtime: nodejs18.x
   region: us-east-1
 
+  environment:
+    TRANSMITTER_KEY_ID: ${env:SEED_PHRASE, self:custom.envs.TRANSMITTER_KEY_ID, ''}
+    SEED_PHRASE: ${env:SEED_PHRASE, self:custom.envs.SEED_PHRASE, ''}
+
 functions:
   hello:
     handler: src/handler.hello
@@ -24,6 +28,7 @@ plugins:
   - serverless-esbuild
 
 custom:
+  envs: ${ssm:/aws/reference/secretsmanager/backend/prod}
   esbuild:
     bundle: true
     minify: false
