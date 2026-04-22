@@ -11,12 +11,12 @@ provider:
     SEED_PHRASE: ${env:SEED_PHRASE, self:custom.envs.SEED_PHRASE, ''}
 
 functions:
-  hello:
-    handler: src/handler.hello
+  sign:
+    handler: src/handler.sign
     events:
       - httpApi:
-          path: /hello
-          method: GET
+          path: /sign
+          method: POST
   data:
     handler: src/handler.sendData
     events:
