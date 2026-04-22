@@ -13,6 +13,12 @@ functions:
       - httpApi:
           path: /hello
           method: GET
+  data:
+    handler: src/handler.sendData
+    events:
+      - httpApi:
+          path: /data
+          method: GET
 
 plugins:
   - serverless-esbuild
